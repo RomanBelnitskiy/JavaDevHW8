@@ -20,7 +20,9 @@ public class TimezoneValidateFilter extends HttpFilter {
         } else {
             try {
                 timezone = timezone.replace(" ", "+");
-                ZoneId.ofOffset(timezone.substring(0, 3), ZoneOffset.of(timezone.substring(3, timezone.length())));
+                ZoneId.ofOffset(timezone.substring(0, 3),
+                        ZoneOffset.of(timezone.substring(3)));
+
                 chain.doFilter(req, res);
             } catch (Exception ex) {
                 res.setStatus(400);
